@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Favorite Cities</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Favorite Cities</h1>
+    <ul id="favoritesList">
+      <!-- Favorite cities will be loaded here -->
+    </ul>
+    <a href="/">Back to Dashboard</a>
+  </div>
+  <script>
+    // Simple fetch to display favorite cities
+    fetch('/api/favorites')
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById('favoritesList');
+        data.forEach(fav => {
+          const li = document.createElement('li');
+          li.textContent = fav.city;
+          list.appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>
